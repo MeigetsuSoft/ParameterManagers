@@ -146,3 +146,85 @@ IUTEST_TYPED_TEST(IntegerOperator, right_shift) {
 	const num b = 2;
 	IUTEST_ASSERT_EQ(0, a >> b);
 }
+
+IUTEST_TYPED_TEST(IntegerOperator, plus_equal) {
+	using num = standard::Integer<TypeParam>;
+	num a = 1;
+	a += 2;
+	IUTEST_ASSERT_EQ(3, a);
+}
+
+IUTEST_TYPED_TEST(IntegerOperator, minus_equal) {
+	using num = standard::Integer<TypeParam>;
+	num a = 2;
+	a -= 2;
+	IUTEST_ASSERT_EQ(0, a);
+}
+
+IUTEST_TYPED_TEST(IntegerOperator, multiplication_equal) {
+	using num = standard::Integer<TypeParam>;
+	num a = 2;
+	a *= 2;
+	IUTEST_ASSERT_EQ(4, a);
+}
+
+IUTEST_TYPED_TEST(IntegerOperator, division_equal) {
+	using num = standard::Integer<TypeParam>;
+	num a = 2;
+	a /= 2;
+	IUTEST_ASSERT_EQ(1, a);
+}
+
+IUTEST_TYPED_TEST(IntegerOperator, zerodivision_equal) {
+	using num = standard::Integer<TypeParam>;
+	num a = 2;
+	try {
+		a /= 0;
+		IUTEST_FAIL();
+	}
+	catch (...) {
+		IUTEST_SUCCEED();
+	}
+}
+
+IUTEST_TYPED_TEST(IntegerOperator, and_equal) {
+	using num = standard::Integer<TypeParam>;
+	num a = 2;
+	a &= 2;
+	IUTEST_ASSERT_EQ(2, a);
+}
+
+IUTEST_TYPED_TEST(IntegerOperator, mod_equal) {
+	using num = standard::Integer<TypeParam>;
+	num a = 140;
+	a %= 45;
+	IUTEST_ASSERT_EQ(5, a);
+}
+
+IUTEST_TYPED_TEST(IntegerOperator, or_equal) {
+	using num = standard::Integer<TypeParam>;
+	num a = 2;
+	a |= 2;
+	IUTEST_ASSERT_EQ(2, a);
+}
+
+IUTEST_TYPED_TEST(IntegerOperator, xor_equal) {
+	using num = standard::Integer<TypeParam>;
+	num a = 2;
+	a ^= 2;
+	IUTEST_ASSERT_EQ(0, a);
+}
+
+IUTEST_TYPED_TEST(IntegerOperator, left_shift_equal) {
+	using num = standard::Integer<TypeParam>;
+	num a = 2;
+	a <<= 2;
+	IUTEST_ASSERT_EQ(8, a);
+}
+
+IUTEST_TYPED_TEST(IntegerOperator, right_shift_equal) {
+	using num = standard::Integer<TypeParam>;
+	num a = 2;
+	a >>= 2;
+	IUTEST_ASSERT_EQ(0, a);
+}
