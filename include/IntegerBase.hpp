@@ -42,7 +42,7 @@ namespace standard {
 		Integer operator *= (const Integer& num) { return NumberBase<T>::operator*=(num); }
 		Integer operator /= (const Integer& num) {
 			if (num.n == 0) throw std::runtime_error("Divide value is 0");
-			this->n = this->clamp(this->n = num.n);
+			this->n = this->clamp(this->n / num.n);
 			return *this;
 		}
 		Integer operator &= (const Integer& num) { this->n = this->clamp(this->n & num.n); return *this; }
