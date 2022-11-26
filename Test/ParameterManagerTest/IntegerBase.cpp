@@ -116,7 +116,7 @@ IUTEST_TYPED_TEST(IntegerOperator, and) {
 	using num = standard::Integer<TypeParam>;
 	const num a = 2;
 	const num b = 2;
-	IUTEST_ASSERT_EQ(2 & 2, a & b);
+	IUTEST_ASSERT_EQ(2, a & b);
 }
 
 IUTEST_TYPED_TEST(IntegerOperator, mod) {
