@@ -99,6 +99,19 @@ IUTEST_TYPED_TEST(IntegerOperator, division) {
 	IUTEST_ASSERT_EQ(1, a / b);
 }
 
+IUTEST_TYPED_TEST(IntegerOperator, zerodivision) {
+	using num = standard::Integer<TypeParam>;
+	const num a = 2;
+	const num b = 0;
+	try {
+		auto cache = a / b;
+		IUTEST_FAIL();
+	}
+	catch (...) {
+		IUTEST_SUCCEED();
+	}
+}
+
 IUTEST_TYPED_TEST(IntegerOperator, and) {
 	using num = standard::Integer<TypeParam>;
 	const num a = 2;
