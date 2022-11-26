@@ -47,7 +47,7 @@ namespace standard {
 			this->n = this->clamp(this->n - 1);
 			return t;
 		}
-		NumberBase operator *= (const NumberBase& num) { this->n = this->clamp(this->n = num.n); return *this; }
+		NumberBase operator *= (const NumberBase& num) { this->n = this->clamp(this->n * num.n); return *this; }
 
 		// Œ»Ý’l‚ðŽæ“¾‚·‚é
 		constexpr const T& Get() const noexcept { return this->n; }
