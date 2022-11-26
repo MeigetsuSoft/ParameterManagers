@@ -52,6 +52,7 @@ namespace standard {
 			return *this;
 		}
 		Integer operator |= (const Integer& num) { this->n = this->clamp(this->n | num.n); return *this; }
+		Integer operator ^= (const Integer& num) { this->n = this->clamp(this->n ^ num.n); return *this; }
 		Integer operator <<= (const Integer& num) {
 			this->n = this->clamp(this->n << num.n);
 			return *this;
