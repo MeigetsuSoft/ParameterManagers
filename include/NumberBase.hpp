@@ -32,22 +32,37 @@ namespace standard {
 		constexpr NumberBase operator + (const NumberBase& num) const { return NumberBase(this->n + num.n, this->maximum, this->minimum); }
 		constexpr NumberBase operator - (const NumberBase& num) const { return NumberBase(this->n - num.n, this->maximum, this->minimum); }
 		constexpr NumberBase operator * (const NumberBase& num) const { return NumberBase(this->n * num.n, this->maximum, this->minimum); }
-		NumberBase operator += (const NumberBase& num) { this->n = this->clamp(this->n + num.n); return *this; }
-		NumberBase operator ++ () { this->n = this->clamp(this->n + 1); return *this; }
-		NumberBase operator ++ (int) {
+		NumberBase& operator += (const NumberBase& num) { 
+			this->n = this->clamp(this->n + num.n); 
+			return *this;
+		}
+		NumberBase& operator ++ () {
+			this->n = this->clamp(this->n + 1);
+			return *this;
+		}
+		NumberBase& operator ++ (int) {
 			const auto t = *this;
 			this->n = this->clamp(this->n + 1);
 			return t;
 		}
-		NumberBase operator - () const { return NumberBase(-this->n, this->maximum, this->minimum); }
-		NumberBase operator -= (const NumberBase& num) { this->n = this->clamp(this->n - num.n); return *this; }
-		NumberBase operator -- () { this->n = this->clamp(this->n - 1); return *this; }
-		NumberBase operator -- (int) {
+		constexpr NumberBase operator - () const { return NumberBase(-this->n, this->maximum, this->minimum); }
+		NumberBase& operator -= (const NumberBase& num) { 
+			this->n = this->clamp(this->n - num.n);
+			return *this;
+		}
+		NumberBase operator -- () { 
+			this->n = this->clamp(this->n - 1);
+			return *this;
+		}
+		NumberBase& operator -- (int) {
 			const auto t = *this;
 			this->n = this->clamp(this->n - 1);
 			return t;
 		}
-		NumberBase operator *= (const NumberBase& num) { this->n = this->clamp(this->n * num.n); return *this; }
+		NumberBase& operator *= (const NumberBase& num) {
+			this->n = this->clamp(this->n * num.n);
+			return *this;
+		}
 
 		// 現在値を取得する
 		constexpr const T& Get() const noexcept { return this->n; }
