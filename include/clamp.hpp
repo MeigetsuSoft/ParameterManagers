@@ -1,4 +1,4 @@
-#if !defined CXX14_COMPATIBLE_CLAMP
+﻿#if !defined CXX14_COMPATIBLE_CLAMP
 #define CXX14_COMPATIBLE_CLAMP
 #include <algorithm>
 #include <cassert>

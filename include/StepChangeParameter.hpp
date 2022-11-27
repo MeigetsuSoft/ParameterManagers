@@ -1,4 +1,4 @@
-#if !defined MGST_CPP_STEP_CHANGE_PARAMETER_CLASS
+ï»¿#if !defined MGST_CPP_STEP_CHANGE_PARAMETER_CLASS
 #define MGST_CPP_STEP_CHANGE_PARAMETER_CLASS
 #include "ParameterManager.hpp"
 
@@ -12,19 +12,19 @@ namespace meigetsusoft {
 			constexpr StepChangeParameter() : StepChangeParameter(0, 0) {}
 			constexpr StepChangeParameter(const I& Default, const I& StepCount)
 				: ParameterManager<I>(Default, (Default * 2) - (Default % StepCount), Default% StepCount), StepWidth(Default / StepCount) {}
-			// ƒpƒ‰ƒ[ƒ^[‚ğƒQ[ƒW‚Å•\¦‚·‚é
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’ã‚²ãƒ¼ã‚¸ã§è¡¨ç¤ºã™ã‚‹
 			void ViewByGauge(const std::function<void(const I&, const I&)>& GaugeDrawFunction, const I& GaugeMaxLength) const {
 				ParameterManager<I>::ViewByGauge(GaugeDrawFunction, GaugeMaxLength);
 			}
-			// ƒpƒ‰ƒ[ƒ^[‚ğ”’l‚Å•\¦‚·‚éBÅ‘å’l‚Í•\¦‚µ‚È‚¢
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’æ•°å€¤ã§è¡¨ç¤ºã™ã‚‹ã€‚æœ€å¤§å€¤ã¯è¡¨ç¤ºã—ãªã„
 			void ViewByNumParam(const std::function<void(const I&)>& GaugeDrawFunction, const bool& UseCurrent = false) const {
 				ParameterManager<I>::ViewByNumParam(GaugeDrawFunction, UseCurrent);
 			}
-			// ƒpƒ‰ƒ[ƒ^[‚ğ”’l‚Å•\¦‚·‚éBÅ‘å’l‚à•\¦‚·‚é
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’æ•°å€¤ã§è¡¨ç¤ºã™ã‚‹ã€‚æœ€å¤§å€¤ã‚‚è¡¨ç¤ºã™ã‚‹
 			void ViewByNumParam(const std::function<void(const I&, const I&)>& GaugeDrawFunction, const bool& UseCurrent = false) const {
 				ParameterManager<I>::ViewByNumParam(GaugeDrawFunction, UseCurrent);
 			}
-			// •\¦ƒpƒ‰ƒ[ƒ^[‚ÆŒ»İ‚Ì’l‚ğ­‚µ‚¸‚Â“¯Šú‚·‚é
+			// è¡¨ç¤ºãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã¨ç¾åœ¨ã®å€¤ã‚’å°‘ã—ãšã¤åŒæœŸã™ã‚‹
 			void Update() {
 				ParameterManager<I>::Update();
 			}

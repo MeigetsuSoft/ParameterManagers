@@ -1,4 +1,4 @@
-#if !defined MINMAX_MANAGEMENT_NUMBER_CLASS_BASE
+﻿#if !defined MINMAX_MANAGEMENT_NUMBER_CLASS_BASE
 #define MINMAX_MANAGEMENT_NUMBER_CLASS_BASE
 #include "clamp.hpp"
 #include <cmath>
@@ -49,33 +49,33 @@ namespace standard {
 		}
 		NumberBase operator *= (const NumberBase& num) { this->n = this->clamp(this->n * num.n); return *this; }
 
-		// ���ݒl���擾����
+		// 現在値を取得する
 		constexpr const T& Get() const noexcept { return this->n; }
-		// �ݒ肳��Ă��錻�݂̍ő�l���擾����
+		// 設定されている現在の最大値を取得する
 		constexpr const T& GetMax() const noexcept { return this->maximum; }
-		// �ݒ肳��Ă��錻�݂̍ő�l���擾����
+		// 設定されている現在の最大値を取得する
 		constexpr const T& GetMin() const noexcept { return this->minimum; }
-		// ���ݒl���w�肳�ꂽ�l�ɕύX����
+		// 現在値を指定された値に変更する
 		void Set(const T& num) noexcept { this->n = this->clamp(num); }
-		// �ő�l���w�肳�ꂽ�l�ɕύX����
-		// ��O : �����Ɏw�肳�ꂽ�l�����݂̍ŏ��l��菬�����ꍇ�Astd::runtime_error����������
+		// 最大値を指定された値に変更する
+		// 例外 : 引数に指定された値が現在の最小値より小さい場合、std::runtime_errorが投げられる
 		void SetMax(const T& num) {
 			if (num < this->minimum) throw std::runtime_error("maximum must be larger than minimum.");
 			this->maximum = num;
 			this->n = this->clamp(this->n);
 		}
-		// �ŏ��l���w�肳�ꂽ�l�ɕύX����
-		// ��O : �����Ɏw�肳�ꂽ�l�����݂̍ő�l���傫���ꍇ�Astd::runtime_error����������
+		// 最小値を指定された値に変更する
+		// 例外 : 引数に指定された値が現在の最大値より大きい場合、std::runtime_errorが投げられる
 		void SetMin(const T& num) {
 			if (num > this->maximum) throw std::runtime_error("minimum must be smaller than maximum.");
 			this->minimum = num;
 			this->n = this->clamp(this->n);
 		}
-		// �ő�l�Ɏw�肳�ꂽ�l�����Z����
-		// ��O : �����Ɏw�肳�ꂽ�l�����̏ꍇ�A�v�Z���邱�Ƃɂ���čő�l���ŏ��l�������ꍇ�Astd::runtime_error����������
+		// 最大値に指定された値を加算する
+		// 例外 : 引数に指定された値が負の場合、計算することによって最大値が最小値を下回る場合、std::runtime_errorが投げられる
 		void AddToMax(const T num) { this->SetMax(this->maximum + num); }
-		// �ő�l�Ɏw�肳�ꂽ�l�����Z����
-		// ��O : �����Ɏw�肳�ꂽ�l�����̏ꍇ�A�v�Z���邱�Ƃɂ���čŏ��l���ő�l������ꍇ�Astd::runtime_error����������
+		// 最大値に指定された値を加算する
+		// 例外 : 引数に指定された値が正の場合、計算することによって最小値が最大値を上回る場合、std::runtime_errorが投げられる
 		void AddToMin(const T num) { this->SetMin(this->minimum + num); }
 	};
 }

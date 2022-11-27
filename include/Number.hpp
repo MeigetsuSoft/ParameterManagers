@@ -1,4 +1,4 @@
-#if !defined MINMAX_MANAGEMENT_NUMBER_CLASS
+﻿#if !defined MINMAX_MANAGEMENT_NUMBER_CLASS
 #define MINMAX_MANAGEMENT_NUMBER_CLASS
 #include "Integer.hpp"
 #include "FloatingPoint.hpp"

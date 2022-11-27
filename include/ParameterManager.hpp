@@ -1,4 +1,4 @@
-#if !defined MGST_CPP_PARAMETER_MANAGER_CLASS
+ï»¿#if !defined MGST_CPP_PARAMETER_MANAGER_CLASS
 #define MGST_CPP_PARAMETER_MANAGER_CLASS
 #include "Number.hpp"
 #include <algorithm>
@@ -41,22 +41,22 @@ namespace meigetsusoft {
 			: ParameterManager(Default, Default, Max, Min) {}
 		constexpr ParameterManager(const I& Default, const I& ViewDefault, const I& Max, const I& Min)
 			: CurrentParam(Default, Max, Min), CurrentViewParam(Default, Max, Min), LastApplySpeed(0) {}
-		// ƒpƒ‰ƒ[ƒ^[‚ğƒQ[ƒW‚Å•\¦‚·‚é
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’ã‚²ãƒ¼ã‚¸ã§è¡¨ç¤ºã™ã‚‹
 		void ViewByGauge(const std::function<void(const I&, const I&)>& GaugeDrawFunction, const I& GaugeMaxLength) const {
 			const I& CurrentLen = CalcLength(this->CurrentParam),
 				CurrentViewLen = CalcLength(this->CurrentParam);
 			GaugeDrawFunction(std::max(CurrentLen, CurrentViewLen), std::min(CurrentLen, CurrentViewLen));
 		}
-		// ƒpƒ‰ƒ[ƒ^[‚ğ”’l‚Å•\¦‚·‚éBÅ‘å’l‚Í•\¦‚µ‚È‚¢
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’æ•°å€¤ã§è¡¨ç¤ºã™ã‚‹ã€‚æœ€å¤§å€¤ã¯è¡¨ç¤ºã—ãªã„
 		void ViewByNumParam(const std::function<void(const I&)>& ParameterDrawFunction, const bool& UseCurrent = false) const {
 			ParameterDrawFunction(UseCurrent ? this->CurrentParam.Get() : this->CurrentViewParam.Get());
 		}
-		// ƒpƒ‰ƒ[ƒ^[‚ğ”’l‚Å•\¦‚·‚éBÅ‘å’l‚à•\¦‚·‚é
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’æ•°å€¤ã§è¡¨ç¤ºã™ã‚‹ã€‚æœ€å¤§å€¤ã‚‚è¡¨ç¤ºã™ã‚‹
 		void ViewByNumParam(const std::function<void(const I&, const I&)>& ParameterDrawFunction, const bool& UseCurrent = false) const {
 			const auto& UseParam = UseCurrent ? this->CurrentParam : this->CurrentViewParam;
 			ParameterDrawFunction(UseParam.Get(), UseParam.GetMax());
 		}
-		// •\¦ƒpƒ‰ƒ[ƒ^[‚ÆŒ»İ‚Ì’l‚ğ­‚µ‚¸‚Â“¯Šú‚·‚é
+		// è¡¨ç¤ºãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã¨ç¾åœ¨ã®å€¤ã‚’å°‘ã—ãšã¤åŒæœŸã™ã‚‹
 		void Update() {
 			if (this->Synced()) {
 				this->LastApplySpeed = 0;
