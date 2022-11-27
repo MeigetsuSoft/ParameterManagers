@@ -38,7 +38,7 @@ namespace meigetsusoft {
 		constexpr ParameterManager(const I& Default, const I& Max = standard::typeMax<I>, const I& Min = standard::typeMin<I>)
 			: ParameterManager(Default, Default, Max, Min) {}
 		constexpr ParameterManager(const I& Default, const I& ViewDefault, const I& Max, const I& Min)
-			: CurrentParam(Default, Max, Min), CurrentViewParam(Default, Max, Min), LastApplySpeed(0) {}
+			: CurrentParam(Default, Max, Min), CurrentViewParam(ViewDefault, Max, Min), LastApplySpeed(0) {}
 		// パラメーターをゲージで表示する
 		void ViewByGauge(const std::function<void(const I&, const I&)>& GaugeDrawFunction, const I& GaugeMaxLength) const {
 			const I& CurrentLen = CalcLength(this->CurrentParam),
