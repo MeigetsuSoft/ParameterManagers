@@ -26,19 +26,40 @@ namespace standard {
 				? FloatingPoint(std::fmod(this->n, num.n), this->maximum, this->minimum)
 				: throw std::runtime_error("Divide value is 0");
 		}
-		FloatingPoint operator += (const FloatingPoint& num) { return NumberBase<T>::operator+=(num); }
-		FloatingPoint operator ++ () { return NumberBase<T>::operator++(); }
-		FloatingPoint operator ++ (int) { return NumberBase<T>::operator++(0); }
-		FloatingPoint operator -= (const FloatingPoint& num) { return NumberBase<T>::operator-=(num); }
-		FloatingPoint operator -- () { return NumberBase<T>::operator--(); }
-		FloatingPoint operator -- (int) { return NumberBase<T>::operator--(0); }
-		FloatingPoint operator *= (const FloatingPoint& num) { return NumberBase<T>::operator*=(num); }
-		FloatingPoint operator /= (const FloatingPoint& num) {
+		FloatingPoint& operator += (const FloatingPoint& num) {
+			NumberBase<T>::operator+=(num);
+			return *this;
+		}
+		FloatingPoint& operator ++ () {
+			NumberBase<T>::operator++();
+			return *this;
+		}
+		FloatingPoint& operator ++ (int) {
+			NumberBase<T>::operator++(0);
+			return *this;
+		}
+		FloatingPoint& operator -= (const FloatingPoint& num) {
+			NumberBase<T>::operator-=(num);
+			return *this;
+		}
+		FloatingPoint& operator -- () {
+			NumberBase<T>::operator--();
+			return *this;
+		}
+		FloatingPoint& operator -- (int) {
+			NumberBase<T>::operator--(0);
+			return *this;
+		}
+		FloatingPoint& operator *= (const FloatingPoint& num) {
+			NumberBase<T>::operator*=(num);
+			return *this;
+		}
+		FloatingPoint& operator /= (const FloatingPoint& num) {
 			if (num.n == 0) throw std::runtime_error("Divide value is 0");
 			this->n = this->clamp(this->n = num.n);
 			return *this;
 		}
-		FloatingPoint operator %= (const FloatingPoint& num) {
+		FloatingPoint& operator %= (const FloatingPoint& num) {
 			if (num.n == 0) throw std::runtime_error("Divide value is 0");
 			this->n = this->clamp(std::fmod(this->n, num.n));
 			return *this;
