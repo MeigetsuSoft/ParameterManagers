@@ -14,6 +14,7 @@ namespace standard {
 			: NumberBase<T>(n) {}
 		constexpr FloatingPoint operator + (const FloatingPoint& num) const { return NumberBase<T>::operator+(num); }
 		constexpr FloatingPoint operator - (const FloatingPoint& num) const { return NumberBase<T>::operator-(num); }
+		constexpr FloatingPoint operator - () const { return NumberBase<T>::operator-(); }
 		constexpr FloatingPoint operator * (const FloatingPoint& num) const { return NumberBase<T>::operator*(num); }
 		constexpr FloatingPoint operator / (const FloatingPoint& num) const {
 			return num.n != 0
@@ -28,7 +29,6 @@ namespace standard {
 		FloatingPoint operator += (const FloatingPoint& num) { return NumberBase<T>::operator+=(num); }
 		FloatingPoint operator ++ () { return NumberBase<T>::operator++(); }
 		FloatingPoint operator ++ (int) { return NumberBase<T>::operator++(0); }
-		FloatingPoint operator - () const { return NumberBase<T>::operator-(); }
 		FloatingPoint operator -= (const FloatingPoint& num) { return NumberBase<T>::operator-=(num); }
 		FloatingPoint operator -- () { return NumberBase<T>::operator--(); }
 		FloatingPoint operator -- (int) { return NumberBase<T>::operator--(0); }
