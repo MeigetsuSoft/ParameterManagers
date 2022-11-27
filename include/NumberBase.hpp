@@ -20,7 +20,7 @@ namespace standard {
 	class NumberBase {
 	protected:
 		T n, maximum, minimum;
-		constexpr const T& clamp(const T num) {
+		constexpr const T& clamp(const T& num) {
 			return standard::clamp(num, this->minimum, this->maximum);
 		}
 		using classbase = NumberBase<T>;
