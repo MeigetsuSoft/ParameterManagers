@@ -4,6 +4,10 @@
 template<typename T>
 struct IntegerOperator : public ::iutest::Test {};
 
+template<typename T>
+struct SignedIntegerOperator : public ::iutest::Test {};
+
+
 IUTEST_TYPED_TEST_CASE(IntegerOperator, ::iutest::Types<
 	short,
 	int,
@@ -13,6 +17,13 @@ IUTEST_TYPED_TEST_CASE(IntegerOperator, ::iutest::Types<
 	unsigned int,
 	unsigned long,
 	unsigned long long
+>);
+
+IUTEST_TYPED_TEST_CASE(SignedIntegerOperator, ::iutest::Types<
+	short,
+	int,
+	long,
+	long long
 >);
 
 IUTEST_TYPED_TEST(IntegerOperator, equal) {
@@ -182,7 +193,7 @@ IUTEST_TYPED_TEST(IntegerOperator, clamp) {
 	IUTEST_ASSERT_EQ(3, standard::clamp(a, minVal, maxVal));
 }
 
-IUTEST_TYPED_TEST(IntegerOperator, abs) {
+IUTEST_TYPED_TEST(SignedIntegerOperator, abs) {
 	using num = standard::Integer<TypeParam>;
 	const num a = 10;
 	const num b = -18;
