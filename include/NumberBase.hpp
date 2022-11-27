@@ -30,6 +30,7 @@ namespace standard {
 		explicit constexpr NumberBase(const T& num, const T& max, const T& min)
 			: n(standard::clamp(num, min, max)), maximum(max), minimum(min) {}
 		constexpr NumberBase operator + (const NumberBase& num) const { return NumberBase(this->n + num.n, this->maximum, this->minimum); }
+		constexpr NumberBase operator - () const { return NumberBase(-this->n, this->maximum, this->minimum); }
 		constexpr NumberBase operator - (const NumberBase& num) const { return NumberBase(this->n - num.n, this->maximum, this->minimum); }
 		constexpr NumberBase operator * (const NumberBase& num) const { return NumberBase(this->n * num.n, this->maximum, this->minimum); }
 		NumberBase& operator += (const NumberBase& num) { 
@@ -45,7 +46,6 @@ namespace standard {
 			this->n = this->clamp(this->n + 1);
 			return t;
 		}
-		constexpr NumberBase operator - () const { return NumberBase(-this->n, this->maximum, this->minimum); }
 		NumberBase& operator -= (const NumberBase& num) { 
 			this->n = this->clamp(this->n - num.n);
 			return *this;
