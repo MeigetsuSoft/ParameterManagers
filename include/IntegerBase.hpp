@@ -32,32 +32,64 @@ namespace standard {
 		constexpr Integer operator ~ () const { return Integer(~this->n, this->maximum, this->minimum); }
 		constexpr Integer operator << (const Integer& num) const { return Integer(this->n << num.n, this->maximum, this->minimum); }
 		constexpr Integer operator >> (const Integer& num) const { return Integer(this->n >> num.n, this->maximum, this->minimum); }
-		Integer operator += (const Integer& num) { return NumberBase<T>::operator+=(num); }
-		Integer operator ++ () { return NumberBase<T>::operator++(); }
-		Integer operator ++ (int) { return NumberBase<T>::operator++(0); }
-		Integer operator - () const { return NumberBase<T>::operator-(); }
-		Integer operator -= (const Integer& num) { return NumberBase<T>::operator-=(num); }
-		Integer operator -- () { return NumberBase<T>::operator--(); }
-		Integer operator -- (int) { return NumberBase<T>::operator--(0); }
-		Integer operator *= (const Integer& num) { return NumberBase<T>::operator*=(num); }
-		Integer operator /= (const Integer& num) {
+		Integer& operator += (const Integer& num) { 
+			NumberBase<T>::operator+=(num);
+			return *this;
+		}
+		Integer& operator ++ () { 
+			NumberBase<T>::operator++();
+			return *this;
+		}
+		Integer& operator ++ (int) {
+			NumberBase<T>::operator++(0);
+			return *this;
+		}
+		constexpr Integer operator - () const {
+			return NumberBase<T>::operator-();
+		}
+		Integer& operator -= (const Integer& num) {
+			NumberBase<T>::operator-=(num);
+			return *this;
+		}
+		Integer& operator -- () {
+			NumberBase<T>::operator--();
+			return *this;
+		}
+		Integer& operator -- (int) {
+			NumberBase<T>::operator--(0);
+			return *this;
+		}
+		Integer& operator *= (const Integer& num) {
+			NumberBase<T>::operator*=(num);
+			return *this;
+		}
+		Integer& operator /= (const Integer& num) {
 			if (num.n == 0) throw std::runtime_error("Divide value is 0");
 			this->n = this->clamp(this->n / num.n);
 			return *this;
 		}
-		Integer operator &= (const Integer& num) { this->n = this->clamp(this->n & num.n); return *this; }
-		Integer operator %= (const Integer& num) {
+		Integer& operator &= (const Integer& num) {
+			this->n = this->clamp(this->n & num.n);
+			return *this;
+		}
+		Integer& operator %= (const Integer& num) {
 			if (num.n == 0) throw std::runtime_error("Divide value is 0");
 			this->n = this->clamp(this->n % num.n);
 			return *this;
 		}
-		Integer operator |= (const Integer& num) { this->n = this->clamp(this->n | num.n); return *this; }
-		Integer operator ^= (const Integer& num) { this->n = this->clamp(this->n ^ num.n); return *this; }
-		Integer operator <<= (const Integer& num) {
+		Integer& operator |= (const Integer& num) {
+			this->n = this->clamp(this->n | num.n);
+			return *this;
+		}
+		Integer& operator ^= (const Integer& num) {
+			this->n = this->clamp(this->n ^ num.n);
+			return *this;
+		}
+		Integer& operator <<= (const Integer& num) {
 			this->n = this->clamp(this->n << num.n);
 			return *this;
 		}
-		Integer operator >>= (const Integer& num) {
+		Integer& operator >>= (const Integer& num) {
 			this->n = this->clamp(this->n >> num.n);
 			return *this;
 		}
