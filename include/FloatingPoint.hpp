@@ -39,7 +39,6 @@ namespace standard {
 
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
 	constexpr FloatingPoint<T> min(const FloatingPoint<T>& Left, const FloatingPoint<T>& Right) { return FloatingPoint<T>(std::min(Left.Get(), Right.Get())); }
-	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
 
 	inline FloatingPoint<long double> abs(const FloatingPoint<long double> n) { return FloatingPoint<long double>(std::abs(n.Get())); }
 	inline FloatingPoint<double> abs(const FloatingPoint<double> n) { return FloatingPoint<double>(std::abs(n.Get())); }
