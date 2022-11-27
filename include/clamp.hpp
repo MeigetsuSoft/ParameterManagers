@@ -17,7 +17,8 @@ namespace standard {
 			comp(v, lo) ? lo : comp(hi, v) ? hi : v;
 	}
 #endif
-	template<class T> constexpr const T& clamp(const T& v, const T& lo, const T& hi) {
+	template<class T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr> 
+	constexpr const T& clamp(const T& v, const T& lo, const T& hi) {
 #if CPP_VER < 201703L
 		return cxx14clamp(v, lo, hi, std::less<>());
 #else
