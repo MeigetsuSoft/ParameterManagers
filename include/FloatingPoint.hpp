@@ -63,7 +63,7 @@ namespace standard {
 
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
 	constexpr FloatingPoint<T> clamp(const FloatingPoint<T>& v, const FloatingPoint<T>& lo, const FloatingPoint<T>& hi) {
-		return assert(hi < lo), v < lo ? lo : hi < v ? hi : v;
+		return standard::clamp(v, lo, hi, std::less{});
 	}
 
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>

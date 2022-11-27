@@ -73,7 +73,7 @@ namespace standard {
 
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	constexpr const Integer<T>& clamp(const Integer<T>& v, const Integer<T>& lo, const Integer<T>& hi) {
-		return assert(hi < lo), v < lo ? lo : hi < v ? hi : v;
+		return clamp(v, lo, hi, std::less{});
 	}
 
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
