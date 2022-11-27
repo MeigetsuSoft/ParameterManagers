@@ -6,45 +6,45 @@
 namespace standard {
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> operator + (const T& n, const Integer<T>& num) {
-		return Integer<T>(clamp(n + num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); 
+		return Integer<T>(n + num.Get(), num.GetMax(), num.GetMin()); 
 	}
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> operator - (const T& n, const Integer<T>& num) {
-		return Integer<T>(clamp(n - num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); 
+		return Integer<T>(n - num.Get(), num.GetMax(), num.GetMin()); 
 	}
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> operator * (const T& n, const Integer<T>& num) {
-		return Integer<T>(clamp(n * num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); 
+		return Integer<T>(n * num.Get(), num.GetMax(), num.GetMin()); 
 	}
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> operator / (const T& n, const Integer<T>& num) {
 		if (num == 0) throw std::runtime_error("Divide value is 0");
-		return Integer<T>(clamp(n / num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); 
+		return Integer<T>(n / num.Get(), num.GetMax(), num.GetMin()); 
 	}
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> operator & (const T& n, const Integer<T>& num) {
-		return Integer<T>(clamp(n & num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin());
+		return Integer<T>(n & num.Get(), num.GetMax(), num.GetMin());
 	}
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> operator % (const T& n, const Integer<T>& num) {
 		if (num == 0) throw std::runtime_error("Divide value is 0");
-		return Integer<T>(clamp(n % num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin());
+		return Integer<T>(n % num.Get(), num.GetMax(), num.GetMin());
 	}
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> operator | (const T& n, const Integer<T>& num) {
-		return Integer<T>(clamp(n | num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin());
+		return Integer<T>(n | num.Get(), num.GetMax(), num.GetMin());
 	}
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> operator ^ (const T& n, const Integer<T>& num) {
-		return Integer<T>(clamp(n ^ num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin());
+		return Integer<T>(n ^ num.Get(), num.GetMax(), num.GetMin());
 	}
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> operator << (const T& n, const Integer<T>& num) {
-		return Integer<T>(clamp(n << num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin());
+		return Integer<T>(n << num.Get(), num.GetMax(), num.GetMin());
 	}
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> operator >> (const T& n, const Integer<T>& num) {
-		return Integer<T>(clamp(n >> num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin());
+		return Integer<T>(n >> num.Get(), num.GetMax(), num.GetMin());
 	}
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline bool operator == (const T& n, const Integer<T>& num) {
