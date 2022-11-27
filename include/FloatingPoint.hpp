@@ -6,18 +6,6 @@
 namespace standard {
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
 	constexpr FloatingPoint<T> clamp(const FloatingPoint<T>& v, const FloatingPoint<T>& lo, const FloatingPoint<T>& hi) { return FloatingPoint<T>(clamp<T>(v.Get(), lo.Get(), hi.Get())); }
-	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
-	constexpr FloatingPoint<T> clamp(const T& v, const FloatingPoint<T>& lo, const FloatingPoint<T>& hi) { return FloatingPoint<T>(clamp<T>(v, lo.Get(), hi.Get())); }
-	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
-	constexpr FloatingPoint<T> clamp(const FloatingPoint<T>& v, const T& lo, const FloatingPoint<T>& hi) { return FloatingPoint<T>(clamp<T>(v.Get(), lo, hi.Get())); }
-	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
-	constexpr FloatingPoint<T> clamp(const FloatingPoint<T>& v, const FloatingPoint<T>& lo, const T& hi) { return FloatingPoint<T>(clamp<T>(v.Get(), lo.Get(), hi)); }
-	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
-	constexpr FloatingPoint<T> clamp(const T& v, const T& lo, const FloatingPoint<T>& hi) { return FloatingPoint<T>(clamp<T>(v, lo, hi.Get())); }
-	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
-	constexpr FloatingPoint<T> clamp(const T& v, const FloatingPoint<T>& lo, const T& hi) { return FloatingPoint<T>(clamp<T>(v, lo.Get(), hi)); }
-	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
-	constexpr FloatingPoint<T> clamp(const FloatingPoint<T>& v, const T& lo, const T& hi) { return FloatingPoint<T>(clamp<T>(v.Get(), lo, hi)); }
 
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
 	inline FloatingPoint<T> operator + (const T& n, const FloatingPoint<T>& num) { return FloatingPoint<T>(clamp(n + num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); }
@@ -48,17 +36,10 @@ namespace standard {
 
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
 	constexpr FloatingPoint<T> max(const FloatingPoint<T>& Left, const FloatingPoint<T>& Right) { return FloatingPoint<T>(std::max(Left.Get(), Right.Get())); }
-	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
-	constexpr FloatingPoint<T> max(const FloatingPoint<T>& Left, const T& Right) { return FloatingPoint<T>(std::max(Left.Get(), Right)); }
-	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
-	constexpr FloatingPoint<T> max(const T& Left, const FloatingPoint<T>& Right) { return FloatingPoint<T>(std::max(Left, Right.Get())); }
 
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
 	constexpr FloatingPoint<T> min(const FloatingPoint<T>& Left, const FloatingPoint<T>& Right) { return FloatingPoint<T>(std::min(Left.Get(), Right.Get())); }
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
-	constexpr FloatingPoint<T> min(const FloatingPoint<T>& Left, const T& Right) { return FloatingPoint<T>(std::min(Left.Get(), Right)); }
-	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
-	constexpr FloatingPoint<T> min(const T& Left, const FloatingPoint<T>& Right) { return FloatingPoint<T>(std::min(Left, Right.Get())); }
 
 	inline FloatingPoint<long double> abs(const FloatingPoint<long double> n) { return FloatingPoint<long double>(std::abs(n.Get())); }
 	inline FloatingPoint<double> abs(const FloatingPoint<double> n) { return FloatingPoint<double>(std::abs(n.Get())); }
