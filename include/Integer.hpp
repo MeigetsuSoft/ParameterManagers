@@ -5,7 +5,9 @@
 
 namespace standard {
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
-	constexpr Integer<T> clamp(const Integer<T>& v, const Integer<T>& lo, const Integer<T>& hi) { return Integer<T>(clamp<T>(v.Get(), lo.Get(), hi.Get())); }
+	constexpr Integer<T> clamp(const Integer<T>& v, const Integer<T>& lo, const Integer<T>& hi) {
+		return Integer<T>(clamp<T>(v.Get(), lo.Get(), hi.Get()));
+	}
 
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> operator + (const T& n, const Integer<T>& num) {
