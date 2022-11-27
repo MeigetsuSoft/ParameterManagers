@@ -160,3 +160,16 @@ IUTEST_TYPED_TEST(IntegerOperator, right_shift) {
 	IUTEST_ASSERT_EQ(0, a >> b);
 }
 
+IUTEST_TYPED_TEST(IntegerOperator, stl_max) {
+	using num = standard::Integer<TypeParam>;
+	const num a = 2;
+	const num b = 6;
+	IUTEST_ASSERT_EQ(6, std::max(a, b));
+}
+
+IUTEST_TYPED_TEST(IntegerOperator, stl_min) {
+	using num = standard::Integer<TypeParam>;
+	const num a = 2;
+	const num b = 6;
+	IUTEST_ASSERT_EQ(2, std::min(a, b));
+}

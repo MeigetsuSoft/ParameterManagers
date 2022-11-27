@@ -72,20 +72,13 @@ namespace standard {
 	}
 
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
-	constexpr Integer<T> clamp(const Integer<T>& v, const Integer<T>& lo, const Integer<T>& hi) {
-		return Integer<T>(clamp<T>(v.Get(), lo.Get(), hi.Get()));
+	constexpr const Integer<T>& clamp(const Integer<T>& v, const Integer<T>& lo, const Integer<T>& hi) {
+		return assert(hi < lo), v < lo ? lo : hi < v ? hi : v;
 	}
-	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
-	constexpr const Integer<T>& max(const Integer<T>& Left, const Integer<T>& Right) {
-		return Left < Right ? Right : Left;
-	}
-	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
-	constexpr const Integer<T>& min(const Integer<T>& Left, const Integer<T>& Right) {
-		return Left > Right ? Right : Left;
-	}
+
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> abs(const Integer<T>& n) {
-		return Integer<T>(n < 0 ? -n.Get() : n.Get()); 
+		return n < 0 ? -n : n;
 	}
 
 	namespace {
