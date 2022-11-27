@@ -190,7 +190,7 @@ IUTEST_TYPED_TEST(IntegerOperator, clamp) {
 	const num a = 2;
 	const num maxVal = 6;
 	const num minVal = 3;
-	IUTEST_ASSERT_EQ(3, standard::clamp(a, minVal, maxVal));
+	IUTEST_ASSERT_EQ(3, std::clamp(a, minVal, maxVal));
 }
 
 IUTEST_TYPED_TEST(SignedIntegerOperator, abs) {

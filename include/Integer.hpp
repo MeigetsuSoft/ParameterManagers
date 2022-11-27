@@ -72,11 +72,6 @@ namespace standard {
 	}
 
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
-	constexpr const Integer<T>& clamp(const Integer<T>& v, const Integer<T>& lo, const Integer<T>& hi) {
-		return clamp(v, lo, hi, std::less{});
-	}
-
-	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> abs(const Integer<T>& n) {
 		return n < 0 ? -n : n;
 	}
