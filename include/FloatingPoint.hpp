@@ -18,7 +18,8 @@ namespace standard {
 	}
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
 	inline FloatingPoint<T> operator / (const T& n, const FloatingPoint<T>& num) {
-		return FloatingPoint<T>(clamp(n / num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin());
+		if (std::abs(n - num.Get() < std::numeric_limits<T>::epsilon()) throw std::runtime_error("Divide value is 0");
+		return FloatingPoint<T>(n / num.Get(), num.GetMin(), num.GetMax());
 	}
 	namespace {
 		template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
