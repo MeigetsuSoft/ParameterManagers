@@ -10,15 +10,17 @@
 #endif
 
 namespace standard {
+#if CPP_VER < 201703L
 	template<typename T, class Compare> 
-	constexpr const T& clamp(const T& v, const T& lo, const T& hi, Compare comp) {
+	constexpr const T& cxx14clamp(const T& v, const T& lo, const T& hi, Compare comp) {
 		return assert(!comp(hi, lo)),
 			comp(v, lo) ? lo : comp(hi, v) ? hi : v;
 	}
+#endif
 	template<class T, std::enable_if_t<std::is_arithmetic<T>::value, std::nullptr_t> = nullptr> 
 	constexpr const T& clamp(const T& v, const T& lo, const T& hi) {
 #if CPP_VER < 201703L
-		return clamp(v, lo, hi, std::less<>());
+		return cxx14clamp(v, lo, hi, std::less<>());
 #else
 		return std::clamp(v, lo, hi);
 #endif
