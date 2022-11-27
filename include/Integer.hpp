@@ -80,6 +80,10 @@ namespace standard {
 		return Left < Right ? Right : Left;
 	}
 	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
+	constexpr const Integer<T>& min(const Integer<T>& Left, const Integer<T>& Right) {
+		return Left > Right ? Right : Left;
+	}
+	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> abs(const Integer<T>& n) {
 		return Integer<T>(n < 0 ? -n.Get() : n.Get()); 
 	}
