@@ -23,15 +23,13 @@ namespace meigetsusoft {
 					return Base;
 			}
 		}
-		template<std::signed_integral I>
-		constexpr I abs(const I& val) { return val < 0 ? -val : val; }
 	}
 	template<std::signed_integral I>
 	class ParameterManager {
 	private:
 		standard::Integer<I> CurrentParam;
 		standard::Integer<I> CurrentViewParam;
-		standard::Integer<I> LastApplySpeed;
+		I LastApplySpeed;
 	protected:
 		constexpr const standard::Integer<I>& GetCurrentParam() const noexcept { return this->CurrentParam; }
 		constexpr const standard::Integer<I>& GetCurrentViewParam() const noexcept { return this->CurrentViewParam; }
@@ -57,16 +55,27 @@ namespace meigetsusoft {
 			ParameterDrawFunction(UseParam.Get(), UseParam.GetMax());
 		}
 		// 表示パラメーターと現在の値を少しずつ同期する
+	private:
+		I CalcApplySpeed() const {
+			// STLがshort型非対応のため対応させたものをlambdaで定義
+
+			static const auto abs = [](const I& a) -> I { return a < 0 ? -a : a; };
+			static const auto max = [](const I& a, const I& b) -> I { return a > b ? b : a; };
+
+			// ここはclassを使わずに演算しないとclampされて挙動がおかしくなる
+			return std::clamp<I>(
+				max(this->LastApplySpeed, abs(this->CurrentParam.Get() - this->CurrentViewParam.Get()) / 10),
+				1,
+				abs(this->CurrentParam.Get() - this->CurrentViewParam.Get())
+				);
+		}
+	public:
 		void Update() {
 			if (this->Synced()) {
 				this->LastApplySpeed = 0;
 				return;
 			}
-			const auto ApplySpeed = standard::clamp<I>(
-				standard::max(this->LastApplySpeed, standard::abs(this->CurrentParam - this->CurrentViewParam) / 10).Get(),
-				1, 
-				abs(this->CurrentParam.Get() - this->CurrentViewParam.Get())
-			);
+			const auto ApplySpeed = this->CalcApplySpeed();
 			this->CurrentViewParam -= this->CurrentParam < this->CurrentViewParam ? ApplySpeed : -ApplySpeed;
 			this->LastApplySpeed = ApplySpeed;
  		}
