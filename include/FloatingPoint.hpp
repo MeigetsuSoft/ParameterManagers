@@ -5,9 +5,6 @@
 
 namespace standard {
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
-	constexpr FloatingPoint<T> clamp(const FloatingPoint<T>& v, const FloatingPoint<T>& lo, const FloatingPoint<T>& hi) { return FloatingPoint<T>(clamp<T>(v.Get(), lo.Get(), hi.Get())); }
-
-	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
 	inline FloatingPoint<T> operator + (const T& n, const FloatingPoint<T>& num) { return FloatingPoint<T>(clamp(n + num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); }
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
 	inline FloatingPoint<T> operator - (const T& n, const FloatingPoint<T>& num) { return FloatingPoint<T>(clamp(n - num.Get(), num.GetMin(), num.GetMax()), num.GetMax(), num.GetMin()); }
@@ -33,6 +30,9 @@ namespace standard {
 	inline bool operator >  (const T& n, const FloatingPoint<T>& num) { return n > num.Get() && !eq(n, num); }
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
 	inline bool operator >= (const T& n, const FloatingPoint<T>& num) { return n >= num.Get(); }
+
+	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
+	constexpr FloatingPoint<T> clamp(const FloatingPoint<T>& v, const FloatingPoint<T>& lo, const FloatingPoint<T>& hi) { return FloatingPoint<T>(clamp<T>(v.Get(), lo.Get(), hi.Get())); }
 
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
 	constexpr FloatingPoint<T> max(const FloatingPoint<T>& Left, const FloatingPoint<T>& Right) { return FloatingPoint<T>(std::max(Left.Get(), Right.Get())); }
