@@ -13,7 +13,7 @@ namespace standard {
 #if CPP_VER < 201703L
 	template<typename T, class Compare> 
 	constexpr const T& cxx14clamp(const T& v, const T& lo, const T& hi, Compare comp) {
-		return  assert(!comp(hi, lo)),
+		return assert(!comp(hi, lo)),
 			comp(v, lo) ? lo : comp(hi, v) ? hi : v;
 	}
 #endif
