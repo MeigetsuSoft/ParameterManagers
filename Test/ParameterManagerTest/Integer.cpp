@@ -1,5 +1,10 @@
 ﻿#include <iutest/iutest.hpp>
 #include "Integer.hpp"
+#if defined _MSC_VER
+#define CPP_VER _MSVC_LANG
+#else
+#define CPP_VER __cplusplus
+#endif
 
 template<typename T>
 struct IntegerOperator : public ::iutest::Test {};
@@ -185,13 +190,15 @@ IUTEST_TYPED_TEST(IntegerOperator, stl_min) {
 	IUTEST_ASSERT_EQ(2, std::min(a, b));
 }
 
-IUTEST_TYPED_TEST(IntegerOperator, clamp) {
+#if CPP_VER >= 201703L
+IUTEST_TYPED_TEST(IntegerOperator, stl_clamp) {
 	using num = standard::Integer<TypeParam>;
 	const num a = 2;
 	const num maxVal = 6;
 	const num minVal = 3;
 	IUTEST_ASSERT_EQ(3, std::clamp(a, minVal, maxVal));
 }
+#endif
 
 IUTEST_TYPED_TEST(IntegerOperator, no_stl_clamp) {
 	using num = standard::Integer<TypeParam>;
