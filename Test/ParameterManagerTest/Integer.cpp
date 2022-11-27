@@ -181,3 +181,11 @@ IUTEST_TYPED_TEST(IntegerOperator, clamp) {
 	const num minVal = 3;
 	IUTEST_ASSERT_EQ(3, standard::clamp(a, minVal, maxVal));
 }
+
+IUTEST_TYPED_TEST(IntegerOperator, abs) {
+	using num = standard::Integer<TypeParam>;
+	const num a = 10;
+	const num b = -18;
+	IUTEST_ASSERT_EQ(10, standard::abs(a));
+	IUTEST_ASSERT_EQ(18, standard::abs(b));
+}
