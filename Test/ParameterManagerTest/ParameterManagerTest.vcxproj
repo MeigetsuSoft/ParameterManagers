@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FloatingPoint.cpp" />
     <ClCompile Include="FloatingPointBase.cpp" />
     <ClCompile Include="IntegerBase.cpp" />
     <ClCompile Include="Integer.cpp" />
