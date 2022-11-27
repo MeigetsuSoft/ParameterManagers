@@ -67,14 +67,6 @@ namespace standard {
 	}
 
 	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
-	constexpr const FloatingPoint<T>& max(const FloatingPoint<T>& Left, const FloatingPoint<T>& Right) {
-		return Left < Right ? Right : Left;
-	}
-	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
-	constexpr const FloatingPoint<T>& min(const FloatingPoint<T>& Left, const FloatingPoint<T>& Right) {
-		return Left > Right ? Right : Left;
-	}
-	template<typename T, std::enable_if_t<std::is_floating_point<T>::value, std::nullptr_t> = nullptr>
 	inline FloatingPoint<T> abs(const FloatingPoint<long double>& n) {
 		return n < 0 ? -n : n;
 	}
