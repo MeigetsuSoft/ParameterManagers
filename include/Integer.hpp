@@ -71,7 +71,7 @@ namespace standard {
 		return n >= num.Get();
 	}
 
-	template<typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
+	template<typename T, std::enable_if_t<std::is_signed<T>::value, std::nullptr_t> = nullptr>
 	inline Integer<T> abs(const Integer<T>& n) {
 		return n < 0 ? -n : n;
 	}
