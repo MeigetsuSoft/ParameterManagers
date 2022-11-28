@@ -99,3 +99,9 @@ IUTEST_TYPED_TEST(FloatingPointBaseOperator, mod) {
 	const num b = 45;
 	IUTEST_ASSERT_EQ(5, a % b);
 }
+
+IUTEST_TYPED_TEST(FloatingPointBaseOperator, cast_operator) {
+	using num = standard::FloatingPoint<TypeParam>;
+	num a = 2;
+	IUTEST_ASSERT_ALMOST_EQ(2, static_cast<TypeParam>(a));
+}
