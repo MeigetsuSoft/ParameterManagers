@@ -15,6 +15,7 @@ namespace standard {
 			: NumberBase<T>(n) {}
 		constexpr Integer operator + (const Integer& num) const { return NumberBase<T>::operator+(num); }
 		constexpr Integer operator - (const Integer& num) const { return NumberBase<T>::operator-(num); }
+		constexpr Integer operator - () const { return NumberBase<T>::operator-(); }
 		constexpr Integer operator * (const Integer& num) const { return NumberBase<T>::operator*(num); }
 		constexpr Integer operator / (const Integer& num) const {
 			return num.n != 0
@@ -43,9 +44,6 @@ namespace standard {
 		Integer& operator ++ (int) {
 			NumberBase<T>::operator++(0);
 			return *this;
-		}
-		constexpr Integer operator - () const {
-			return NumberBase<T>::operator-();
 		}
 		Integer& operator -= (const Integer& num) {
 			NumberBase<T>::operator-=(num);
