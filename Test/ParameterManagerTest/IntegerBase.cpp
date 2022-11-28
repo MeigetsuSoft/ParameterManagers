@@ -241,3 +241,9 @@ IUTEST_TYPED_TEST(IntegerBaseOperator, right_shift_equal) {
 	a >>= 2;
 	IUTEST_ASSERT_EQ(0, a);
 }
+
+IUTEST_TYPED_TEST(IntegerBaseOperator, cast_operator) {
+	using num = standard::Integer<TypeParam>;
+	num a = 2;
+	IUTEST_ASSERT_EQ(2, static_cast<TypeParam>(a));
+}
