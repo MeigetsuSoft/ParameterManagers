@@ -92,6 +92,7 @@ namespace standard {
 		// 最大値に指定された値を加算する
 		// 例外 : 引数に指定された値が正の場合、計算することによって最小値が最大値を上回る場合、std::runtime_errorが投げられる
 		void AddToMin(const T& num) { this->SetMin(this->minimum + num); }
+		explicit operator T () const noexcept { return this->n; }
 	};
 }
 #endif
