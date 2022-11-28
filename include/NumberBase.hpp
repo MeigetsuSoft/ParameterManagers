@@ -71,7 +71,7 @@ namespace standard {
 		// 設定されている現在の最大値を取得する
 		constexpr const T& GetMin() const noexcept { return this->minimum; }
 		// 現在値を指定された値に変更する
-		void Set(const T& num) noexcept { this->n = this->clamp(num); }
+		void Set(const T& num) { this->n = this->clamp(num); }
 		// 最大値を指定された値に変更する
 		// 例外 : 引数に指定された値が現在の最小値より小さい場合、std::runtime_errorが投げられる
 		void SetMax(const T& num) {
